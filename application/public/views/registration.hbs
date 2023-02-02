@@ -1,0 +1,134 @@
+{{!-- Registration Page: Users who have not registered with
+Gator Express can create an account here.
+Author(s): Amir Modan --}}
+
+<main class="container col-md-4 form-signin border border-dark pt-1">
+  <form name="registration" class="m-2" method="POST" action="/users/register"
+    enctype="application/x-www-form-urlencoded">
+      <div class="border-bottom mb-3 border-dark">
+        <h3 class="mb-3 fw-normal">Register</h3>
+      </div>
+
+      <!-- Email Address -->
+      <div class="form-floating ">
+        <input name="email" type="email" class="form-control" id="input-email" placeholder="name@mail.sfsu.edu" required>
+        <label id="label-email" for="input-email">Email address *</label>
+        <small id="helpBlock2" class="text-danger"></small>
+      </div>
+
+      <!-- Username -->
+      <div class="form-floating ">
+        <input name="username" type="username" class="form-control" id="input-username" placeholder="Username" required>
+        <label id="label-username" for="input-username">Username *</label>
+        <small id="helpBlock1" class="text-danger"></small>
+      </div>
+
+      <!-- Password -->
+      <div class="form-floating">
+        <input name="password" type="password" class="form-control" id="input-password" placeholder="Password" required>
+        <label id="label-password" for="input-password">Password *</label>
+        <small id="helpBlock3" class="text-danger"></small>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-floating">
+        <input name="confirmPassword" type="password" class="form-control" id="input-cPassword" placeholder="Password" required>
+        <label id="label-cPassword" for="input-cPassword">Confirm Password *</label>
+        <small id="helpBlock4" class="text-danger"></small>
+      </div>
+
+      <!-- SignUp Button -->
+      <button class="btn btn-lg btn-primary mt-3" type="submit">Sign Up</button>
+
+      <p class="d-flex justify-content-end text-muted">* Required Fields</p>
+      <p>Already have an account? Log in <a href="/login">here</a></p>
+    </form>
+  </main>
+
+  <script>
+    const checkUsername = (username) => {
+        let usernameChecker = /^\D\w{2,}$/;
+        return usernameChecker.test(username);
+    };
+    const checkPassword = (password) => {
+        let passwordChecker = /(?=.*?[A-Z])\d*?(?=.*?[\/*-+!@#$^&*]).{8,}$/;
+        return passwordChecker.test(password);
+    };
+
+    const checkEmail = (email) => {
+        let emailChecker = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[@sfsu.edu]+$/
+        return emailChecker.test(email);
+    };
+
+    const passwordsMatched = (password, confirmPassword) => {
+        if (password == confirmPassword) {
+            return true;
+        }
+        return false;
+    }
+
+    const username = document.getElementById("input-username")
+    username.addEventListener('change', (event) => {
+        let regUsername = document.getElementById("label-username");
+        let helpBlock1 = document.getElementById('helpBlock1');
+        if (!checkUsername(username.value)) {
+            regUsername.setAttribute('class', 'control-label text-danger');
+            helpBlock1.setAttribute('class', 'text-danger');
+            helpBlock1.innerHTML = "Must begin with a letter and is 3 or more characters";
+        }
+        else {
+            regUsername.setAttribute('class', 'control-label text-success');
+            helpBlock1.setAttribute('class', 'help-block text-success');
+            helpBlock1.innerHTML = "";
+        }
+    })
+
+    const email = document.getElementById("input-email")
+    email.addEventListener('change', (event) => {
+        let regEmail = document.getElementById("label-email");
+        let helpBlock2 = document.getElementById('helpBlock2');
+        if (!checkEmail(email.value)) {
+            regEmail.setAttribute('class', 'control-label text-danger');
+            helpBlock2.setAttribute('class', 'text-danger');
+            helpBlock2.innerHTML = "Must be a valid email";
+        }
+        else {
+            regEmail.setAttribute('class', 'control-label text-success');
+            helpBlock2.setAttribute('class', 'help-block text-success');
+            helpBlock2.innerHTML = "";
+        }
+    })
+
+    const password = document.getElementById("input-password")
+    password.addEventListener('change', (event) => {
+        let regPassword = document.getElementById("label-password");
+        let helpBlock3 = document.getElementById('helpBlock3');
+        if (!checkPassword(password.value)) {
+            regPassword.setAttribute('class', 'control-label text-danger');
+            helpBlock3.setAttribute('class', 'text-danger');
+            helpBlock3.innerHTML = "8 or more characters AND contains at least upper case letter AND 1 number and 1 of the following special characters ( / * - + ! @ )";
+        }
+        else {
+            regPassword.setAttribute('class', 'control-label text-success');
+            helpBlock3.setAttribute('class', 'help-block text-success');
+            helpBlock3.innerHTML = "";
+        }
+    })
+
+    const cPassword = document.getElementById("input-cPassword")
+    cPassword.addEventListener('change', (event) => {
+        let regcPassword = document.getElementById("label-cPassword");
+        let helpBlock4 = document.getElementById('helpBlock4');
+        if (!passwordsMatched(password.value,cPassword.value)) {
+            regcPassword.setAttribute('class', 'control-label text-danger');
+            helpBlock4.setAttribute('class', 'text-danger');
+            helpBlock4.innerHTML = "Passwords must match";
+        }
+        else {
+            regcPassword.setAttribute('class', 'control-label text-success');
+            helpBlock4.setAttribute('class', 'help-block text-success');
+            helpBlock4.innerHTML = "";
+        }
+    })
+
+</script>

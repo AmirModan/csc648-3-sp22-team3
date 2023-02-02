@@ -1,0 +1,48 @@
+{{! Card is rendered here. First div makes it responsive }}
+
+<div class="col-xl-3 col-lg-4 col-md-6 col-12 border bg-light p-2 rounded m-1 d-flex row" style="max-width:290px; flex-wrap:wrap; ">
+  <div class="card-title" onclick="window.location = '/product/{{id}}'" style="cursor: pointer">
+    {{! Card Image }}
+    <div class="row mb-2" style="height: 150px; overflow:hidden;">
+      <img class="img-fluid rounded" src="{{thumbnail}}" alt="Missing Image" />
+    </div>
+
+    {{! Card Title }}
+    <div class="row d-flex justify-content-between" >
+      <h5 class="col field-overflow">{{title}}</h5>
+      <div class="col-3">
+        <h5 class="text-end">${{price}}</h5>
+      </div>
+    </div>
+  </div>
+
+  {{! Username }}
+  <div class="row d-flex">
+    <p class="card-user">@{{username}}</p>
+  </div>
+
+  {{! Contact Seller }}
+  <div class="row flex-md-row h-md-250 justify-content-center">
+    
+    <button type="button" class="col-10 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{id}}">Contact Seller</button>
+  </div>
+</div>
+
+{{!-- OLD MODAL WAS HERE --}}
+
+
+{{! OLD: KEEP FOR REFERENCE }}
+{{! Values will be added from columns in joined tables }}
+{{!-- <div id="product-{{id}}" class="card">
+    <div class="card-body">
+        <p class="card-photo"></p>
+        <p class="card-title">{{title}}</p>
+        <p class="card-category">Category: {{name}}</p>
+        <p class="card-text">Description: {{description}}</p>
+        <p class="card-price">${{price}}</p>
+        <p class="card-user">Sold by: {{username}}</p>
+        <img class="card-image" src="{{thumbnail}}" alt="Missing Image">
+        <input type="button" value="Contact Seller" />
+    </div>
+
+</div> --}}

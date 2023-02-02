@@ -1,0 +1,79 @@
+{{!-- This Page will render an individual item for viewing
+Information will be rendered from database upon query
+
+Author(s): --}}
+
+
+<div class="container col-10">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <img class="img-fluid mx-auto d-block rounded" src="/{{currentProduct.photopath}}">
+        </div>
+        <div class="col-6">
+            <h3>{{currentProduct.title}}</h6>
+            <p>Sold By: @{{currentProduct.username}}</p>
+            <p>Price: ${{currentProduct.price}}</p>
+            <p>Description: {{currentProduct.description}}</p>
+            <button type="button" class="col-10 btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact Seller</button>
+        </div>
+    </div>
+</div>
+
+{{!-- Individual Modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pb-0 border-0">
+        <h5 class="modal-title">{{currentProduct.title}} for ${{currentProduct.price}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-0">
+        <form>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message <span class="fw-bold text-primary">@{{currentProduct.username}}</span>:</label>
+            <textarea id="message-text" class="form-control"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer pt-0 border-0">
+        <button type="button" class="btn btn-gray-300" data-bs-dismiss="modal">Close</button>
+        <button id ="send-message-button" type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  //let productId = document.location.pathname.match(/\d+/g).map(Number)[0];
+  console.log(document.location.pathname)
+
+  document.getElementById('send-message-button').onclick = (event) => {
+   
+    let messageText = document.getElementById('message-text').value;
+    console.log(messageText)
+    
+    let productId = document.location.pathname.match(/\d+/g).map(Number)[0];
+    console.log(productId)
+    if (!messageText) {
+      return;
+    }
+
+    let fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        message: messageText,
+        productId: productId
+      })
+    }
+    fetch('/messages/create', fetchOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.JSON)
+      })
+      .catch(err => console.log(err));
+  }
+</script>

@@ -1,0 +1,81 @@
+{{!-- This is our nav bar. We can probably partition this further in the future --}}
+
+<div id="head" class="container px-5 bg-primary text-white mb-5">
+    <header class="blog-header py-3 ">
+        {{!-- Disclaimer --}}
+        <p class="text-center">SFSU Software Engineering Project CSC 648-848, Spring 2022. For Demonstration Only</p>
+        <div class="row justify-content-between align-items-center">
+            {{!-- Banner / Left Column --}}
+            <div id="banner" class="bg-secondary border border-secondary col-lg-4 col-md-3 p-2" style="cursor: pointer; border-radius: 15px;"
+                onclick="window.location='/'">
+                <h2 class="text-center">Gator Express</h2>
+                <h6 class="text-center">By CSC 648 Team 3</h6>
+            </div>
+
+            {{!-- Right Column --}}
+            <div class="col-lg-7 col-md-8 my-3" style="padding-right: 0 !important">
+                {{!-- Tabs above search bar --}}
+                <div class="row mb-2 justify-content-end">
+                    <nav id="actions-menu" class="col-lg-10 d-flex justify-content-between">
+                        <a class="btn text-white {{#if onPost}} btn-secondary {{/if}} mx-1 py-0" href="/post">Post</a>
+                        <a class="btn text-white {{#if onAbout}} btn-secondary {{/if}} mx-1 py-0"
+                            href="/about">About</a>
+                        <a class="btn text-white {{#if onMap}} btn-secondary {{/if}} mx-1 py-0" href="/map">Map</a>
+                        <a class="btn text-white {{#if onMyPage}} btn-secondary {{/if}} field-overflow mx-1 py-0"
+                            href="/myMessages">My Page</a>
+
+                        {{#if logged}}
+                        <a id="logout-button"  class="btn btn-sm btn-light text-dark btn-block field-overflow mx-1"
+                            >Log Out</a>
+                        {{else}}
+                        <a class="btn btn-sm btn-light text-dark btn-block field-overflow mx-1" href="/login">Log In /
+                            Register</a>
+                        {{/if}}
+
+                        {{!-- <a class="btn btn-sm btn-light text-dark btn-block field-overflow mx-1" href="/login">Log
+                            Out</a> --}}
+
+                    </nav>
+                </div>
+
+                {{!-- Search Bar --}}
+                <div class="row">
+                    <form id="search-bar" method="GET" action="/results">
+                        <div class="input-group">
+                            {{!-- Dropdown menu for category --}}
+                            <select id="category" class="btn btn-md btn-light border-secondary col-2 text-start"
+                                data-bs-toggle="dropdown" aria-expanded="false" name="category">
+                                <option value="">All</option>
+                                {{#each categories}}
+                                <option value="{{name}}" {{#if selected}} selected {{/if}}>
+                                    {{name}}</option>
+                                {{/each}}
+                            </select>
+
+                            {{!-- Text Input --}}
+                            <input id="search" class="col-4 form-control" name="search" type="search"
+                                value="{{searchTerm}}" placeholder="Search..." maxlength="{{searchLimit}}">
+
+                            {{!-- Search Button --}}
+                            <a class="btn btn-secondary" onclick="submitExternal()" aria-label="Search"
+                                style="cursor: pointer;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="my-1" role="img" viewBox="0 0 24 24">
+                                    <title>Search</title>
+                                    <circle cx="10.5" cy="10.5" r="7.5" />
+                                    <path d="M21 21l-5.2-5.2" />
+                                </svg>
+                            </a>
+
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<script src="../js/frontendjs.js"></script>

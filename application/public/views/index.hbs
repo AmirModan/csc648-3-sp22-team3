@@ -1,0 +1,74 @@
+{{!-- This is our Home Page. We display our featured content here --}}
+
+<div id="main-container" class="container"> 
+    {{!-- Displays search results; see card.hbs --}}
+    <div id="result-cards" class="container border border-dark p-5">
+        <div class="intro h3 pt-3 text-center"><p>Hello there, We are Gator Express. </br>A buying and selling site for SFSU Members. Know more about us below. </p></div>
+
+        <div class="row mb-2 mt-4 justify-content-around py-5">
+
+            {{!-- Card container --}}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 border p-3" style="border-radius: 10px ;">
+            {{!-- Card Image --}}
+                <div class="row mb-2">
+                {{!-- <img class="card-image" src="{{thumbnail}}" alt="Missing Image"> --}}
+                <img src="../assets/img/homepage/about.png" class="img-fluid" style="min-height: 150px;">
+                </img>
+                </div>
+
+                {{!-- Card Title --}}
+                <div class="row d-flex justify-content-between text-center">
+                    <h5 class="col field-overflow">GatorExpress?</h5>
+                </div>
+
+                <div class ="row flex-md-row h-md-250 justify-content-center">
+                    <button type="button" class="col-10 btn btn-outline-dark bg-secondary"
+                        onclick="window.location='/about'" style="color:aliceblue;">More</button>
+                </div>
+            </div>
+
+
+            {{!-- Card container --}}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 border p-3"  style="border-radius: 10px ;">
+            {{!-- Card Image --}}
+                <div class="row mb-2">
+                {{!-- <img class="card-image" src="{{thumbnail}}" alt="Missing Image"> --}}
+                <img src="../assets/img/homepage/map.png" class="img-fluid" style="min-height: 150px;">
+                </img>
+                </div>
+
+                {{!-- Card Title --}}
+                <div class="row d-flex justify-content-between text-center">
+                    <h5 class="col field-overflow">Campus Map</h5>
+                </div>
+
+                <div class ="row flex-md-row h-md-250 justify-content-center">
+                    <button type="button" class="col-10 btn btn-outline-dark bg-secondary"
+                        onclick="window.location='/map'" style="color:aliceblue;">More</button>
+                </div>
+            </div>
+
+            {{!-- Card container --}}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 border p-3"  style="border-radius:10px;">
+            {{!-- Card Image --}}
+                <div class="row mb-2">
+                {{!-- <img class="card-image" src="{{thumbnail}}" alt="Missing Image"> --}}
+                <img src="../assets/img/homepage/latest.png" class="img-fluid" style="height: 150px; ">
+                </img>
+                </div>
+
+                {{!-- Card Title --}}
+                <div class="row d-flex justify-content-between text-center">
+                    <h5 class="col field-overflow">Latest Post</h5>
+                </div>
+
+                <div class ="row flex-md-row h-md-250 justify-content-center">
+                    <button type="button" class="col-10 btn btn-outline-dark bg-secondary"
+                        onclick="window.location='/results'" style="color:aliceblue;">More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- May implement different sections for users to browse on home page --}}

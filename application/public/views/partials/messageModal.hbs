@@ -1,0 +1,26 @@
+{{!-- Modal for Each Card --}}
+<div class="modal fade" id="exampleModal{{id}}" tabindex="-1" aria-labelledby="exampleModal{{id}}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header pb-0 border-0">
+        <h5 class="modal-title">{{title}} for ${{price}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-0">
+        <form>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message <span
+                class="fw-bold text-primary">@{{username}}</span>:</label>
+            <textarea id="message" class="form-control"></textarea>
+          </div>
+          <div class="modal-footer pt-0 border-0">
+            <button type="button" class="btn btn-gray-300" data-bs-dismiss="modal">Close</button>
+            <button type="button" id ="send-message-button"  class="btn btn-primary">Send message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

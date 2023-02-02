@@ -1,0 +1,56 @@
+{{!-- Results page will display items from back-end here
+Also see "card.hbs" for card stucture
+
+Author(s): --}}
+<div id="main-container" class="container p-0">
+    {{!-- Text and Sort --}}
+    <div class="row mb-3">
+        {{!-- Text will appear depending on if there are search results --}}
+        <div id="results-found" class="col-xl-9 d-flex justify-content-start">
+            {{#if found}}
+            <p class="my-0 p-1">Results found{{#if searchTerm}}
+                for "{{searchTerm}}"{{/if}}{{#if category}}
+                in {{category}}{{/if}}: {{searchResultsNumber}}</p>
+            {{else}}
+            <p class="my-0 p-1">No results found{{#if category}} in {{category}}{{/if}}. Here are some of the latest
+                posts insead:</p>
+            {{/if}}
+        </div>
+
+        {{!-- Sort dropdown; this will appear on results page --}}
+        <div id="sort-dropdown" class="col-xl-3 d-flex justify-content-end">
+            <label class="p-1" for="sort">Sort By: </label>
+            <select id="sort" class="btn btn-sm bg-light border-gray-700 text-start" name="sort" form="search-bar"
+                onchange="submitExternal()">
+                {{#each sortMethods}}
+                <option value="{{value}}" {{#if selected}} selected {{/if}}>
+                    {{sortMethodName}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+
+    {{!-- All cards are rendered here --}}
+    <div id="result-cards" class="container col-11 mb-2">
+        <div class="row justify-content-start">
+            {{#each results}}
+            {{> card this}}
+            {{/each}}
+
+        {{!-- This if statement checks if the user is logged in (when pressing contact seller) and if they aren't, it prompts them to log in --}}
+            {{#if logged}}
+                {{#each results}}
+                    {{> messageModal this}}
+                {{/each}}
+            {{else}}
+                {{#each results}}
+                    {{> loginModal this}}
+                {{/each}}
+            {{/if}}
+
+
+        </div>
+    </div>
+</div>
+<script src="../js/frontendjs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
